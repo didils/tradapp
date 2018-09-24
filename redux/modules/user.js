@@ -31,6 +31,7 @@ function logOut() {
 }
 
 // API Actions
+
 function login(username, password) {
   return dispatch => {
     return fetch(`${API_URL}/rest-auth/login/`, {
@@ -141,7 +142,8 @@ function applySetUser(state, action) {
 
 const actionCreators = {
   login,
-  facebookLogin
+  facebookLogin,
+  logOut
 };
 
 export { actionCreators };

@@ -6,14 +6,22 @@ import RootNavigation from "../../navigation/RootNavigation";
 
 class AppContainer extends Component {
   static propTypes = {
-    isLoggedIn: PropTypes.bool.isRequired
+    isLoggedIn: PropTypes.bool.isRequired,
+    initApp: PropTypes.func.isRequired
   };
+  componentDidMount() {
+    const { isLoggedIn, initApp } = this.props;
+    if (isLoggedIn) {
+      console.log(`AppCotainer/presenter 내부 isLoggedIn: ${isLoggedIn}`)
+      initApp();
+    }
+  }
   render() {
-    const { isLoggedIn } = this.props;
+    const { isLoggedIn, profile } = this.props;
     return (
       <View style={styles.container}>
         <StatusBar hidden={false} />
-        {isLoggedIn ? <RootNavigation /> : <LoggedOutNavigation />}
+        {isLoggedIn && profile ? <RootNavigation screenProps={{ username: profile.username }} /> : <LoggedOutNavigation />}
       </View>
     );
   }

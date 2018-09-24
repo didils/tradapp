@@ -3,9 +3,10 @@ import { View } from "react-native";
 import { createBottomTabNavigator } from "react-navigation";
 import HomeRoute from "../routes/HomeRoute";
 import SearchRoute from "../routes/SearchRoute";
-import NotificationsRoute from "../routes/NotificationsRoute";
+import CartScreen from "../screens/CartScreen";
 import ProfileRoute from "../routes/ProfileRoute";
 import { Ionicons } from "@expo/vector-icons";
+import { MaterialIcons } from "@expo/vector-icons";
 
 const TabsNavigation = createBottomTabNavigator(
   {
@@ -13,59 +14,64 @@ const TabsNavigation = createBottomTabNavigator(
       screen: HomeRoute,
       navigationOptions: {
         tabBarIcon: ({ focused }) => (
-          <Ionicons
-            name={focused ? "ios-home" : "ios-home-outline"}
+          <MaterialIcons
+            name={"home"}
             size={30}
-            color={"black"}
+            color={focused ? "black" : "#31A5FF"}
           />
-        )
+        ),
+        tabBarLabel: "홈"
       }
     },
     Search: {
       screen: SearchRoute,
       navigationOptions: {
         tabBarIcon: ({ focused }) => (
-          <Ionicons
-            name={focused ? "ios-search" : "ios-search-outline"}
+          <MaterialIcons
+            name={"list"}
             size={30}
-            color={"black"}
+            color={focused ? "black" : "#31A5FF"}
           />
-        )
+        ),
+        tabBarLabel: "리스트"
       }
     },
     Notifications: {
-      screen: NotificationsRoute,
+      screen: CartScreen,
       navigationOptions: {
         tabBarIcon: ({ focused }) => (
-          <Ionicons
-            name={focused ? "ios-heart" : "ios-heart-outline"}
+          <MaterialIcons
+            name={"shopping-cart"}
             size={30}
-            color={"black"}
+            color={focused ? "black" : "#31A5FF"}
           />
-        )
+        ),
+        tabBarLabel: "장바구니"
       }
     },
     Profile: {
       screen: ProfileRoute,
       navigationOptions: {
         tabBarIcon: ({ focused }) => (
-          <Ionicons
-            name={focused ? "ios-person" : "ios-person-outline"}
+          <MaterialIcons
+            name={"account-box"}
             size={30}
-            color={"black"}
+            color={focused ? "black" : "#31A5FF"}
           />
-        )
+        ),
+        tabBarLabel: "계정"
       }
     }
   },
   {
     tabBarPosition: "bottom",
     tabBarOptions: {
-      showLabel: false,
       style: {
         backgroundColor: "#FBFBFB",
-        height: 45
-      }
+        height: 55
+      },
+      activeTintColor: "black",
+      inactiveTintColor: "#31A5FF"
     }
   }
 );
